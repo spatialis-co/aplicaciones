@@ -1,0 +1,257 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.2017,
+              4.4897
+            ],
+            [
+              -73.9617,
+              4.4897
+            ],
+            [
+              -73.9617,
+              4.7297
+            ],
+            [
+              -74.2017,
+              4.7297
+            ],
+            [
+              -74.2017,
+              4.4897
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "MUNICIPIO": "BOGOTA D.C.",
+        "DEPARTAMENTO": "CUNDINAMARCA",
+        "NOMBRE": "BOGOTA D.C."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -75.6612,
+              6.1642
+            ],
+            [
+              -75.5012,
+              6.1642
+            ],
+            [
+              -75.5012,
+              6.3242
+            ],
+            [
+              -75.6612,
+              6.3242
+            ],
+            [
+              -75.6612,
+              6.1642
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "MUNICIPIO": "MEDELLIN",
+        "DEPARTAMENTO": "ANTIOQUIA",
+        "NOMBRE": "MEDELLIN"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -76.612,
+              3.3716
+            ],
+            [
+              -76.452,
+              3.3716
+            ],
+            [
+              -76.452,
+              3.5316
+            ],
+            [
+              -76.612,
+              3.5316
+            ],
+            [
+              -76.612,
+              3.3716
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "MUNICIPIO": "CALI",
+        "DEPARTAMENTO": "VALLE DEL CAUCA",
+        "NOMBRE": "CALI"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.8453,
+              10.9045
+            ],
+            [
+              -74.71730000000001,
+              10.9045
+            ],
+            [
+              -74.71730000000001,
+              11.0325
+            ],
+            [
+              -74.8453,
+              11.0325
+            ],
+            [
+              -74.8453,
+              10.9045
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "MUNICIPIO": "BARRANQUILLA",
+        "DEPARTAMENTO": "ATLANTICO",
+        "NOMBRE": "BARRANQUILLA"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.1678,
+              7.0774
+            ],
+            [
+              -73.0718,
+              7.0774
+            ],
+            [
+              -73.0718,
+              7.1734
+            ],
+            [
+              -73.1678,
+              7.1734
+            ],
+            [
+              -73.1678,
+              7.0774
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "MUNICIPIO": "BUCARAMANGA",
+        "DEPARTAMENTO": "SANTANDER",
+        "NOMBRE": "BUCARAMANGA"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 6,
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -75.57839999999999,
+              10.3357
+            ],
+            [
+              -75.4504,
+              10.3357
+            ],
+            [
+              -75.4504,
+              10.4637
+            ],
+            [
+              -75.57839999999999,
+              10.4637
+            ],
+            [
+              -75.57839999999999,
+              10.3357
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "MUNICIPIO": "CARTAGENA DE INDIAS",
+        "DEPARTAMENTO": "BOLIVAR",
+        "NOMBRE": "CARTAGENA DE INDIAS"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 7,
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -75.7441,
+              4.7653
+            ],
+            [
+              -75.6481,
+              4.7653
+            ],
+            [
+              -75.6481,
+              4.8613
+            ],
+            [
+              -75.7441,
+              4.8613
+            ],
+            [
+              -75.7441,
+              4.7653
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "MUNICIPIO": "PEREIRA",
+        "DEPARTAMENTO": "RISARALDA",
+        "NOMBRE": "PEREIRA"
+      }
+    }
+  ]
+}

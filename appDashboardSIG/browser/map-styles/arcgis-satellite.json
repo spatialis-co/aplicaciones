@@ -1,0 +1,38 @@
+{
+  "version": 8,
+  "name": "ArcGIS World Imagery with Labels",
+  "metadata": {
+    "mgl:federated": false
+  },
+  "sources": {
+    "arcgis-imagery": {
+      "type": "raster",
+      "tiles": [
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+      ],
+      "tileSize": 256,
+      "attribution": "Esri, DigitalGlobe, GeoEye, i-cubed, USDA FSA, USGS, AEX, Getmapping, Aerogrid, IGN, IGP, swisstopo, and the GIS User Community",
+      "maxzoom": 17
+    },
+    "arcgis-labels": {
+      "type": "raster",
+      "tiles": [
+        "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}"
+      ],
+      "tileSize": 256,
+      "attribution": "Esri"
+    }
+  },
+  "layers": [
+    {
+      "id": "arcgis-imagery-layer",
+      "type": "raster",
+      "source": "arcgis-imagery"
+    },
+    {
+      "id": "arcgis-labels-layer",
+      "type": "raster",
+      "source": "arcgis-labels"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "version": 8,
+  "name": "OpenStreetMap Standard",
+  "metadata": {
+    "mgl:federated": false
+  },
+  "sources": {
+    "osm-tiles": {
+      "type": "raster",
+      "tiles": [
+        "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+      ],
+      "tileSize": 256,
+      "attribution": "© OpenStreetMap contributors",
+      "maxzoom": 19
+    }
+  },
+  "layers": [
+    {
+      "id": "osm-layer",
+      "type": "raster",
+      "source": "osm-tiles"
+    }
+  ]
+}
