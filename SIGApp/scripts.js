@@ -898,4 +898,3 @@ var krpanoJS = {
 };
 
 ;
-//# sourceMappingURL=scripts.js.map

@@ -278668,4 +278668,3 @@ function _asyncToGenerator(fn) {
 /***/ })
 
 }]);
-//# sourceMappingURL=vendor.js.map

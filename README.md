@@ -33,6 +33,8 @@ Usa un conjunto de 1.400 eventos de demostración incluido en el repositorio (`a
 
 Este repositorio contiene únicamente la **compilación publicada** de cada aplicación (archivos estáticos para GitHub Pages). El código fuente de las aplicaciones no está incluido, vive en sus propios repositorios.
 
+Los *source maps* no se publican. SIGApp traía 423 archivos `.map` (46 MB) que GitHub Pages servía abiertamente: no aportan nada al usuario, duplican el despliegue y exponen el TypeScript original de una aplicación comercial. Se borraron junto con los comentarios `sourceMappingURL` que los referenciaban, de modo que el navegador tampoco los pide. Al compilar para publicar, conviene generar sin source maps (`ng build --configuration production` sin `sourceMap`).
+
 Las páginas usan rutas base `/aplicaciones/SIGApp/` y `/aplicaciones/appDashboardSIG/`, por lo que deben servirse desde una carpeta llamada `aplicaciones`. Si cambia el nombre del repositorio, hay que volver a compilar las aplicaciones con la nueva ruta base.
 
 ## Capa de presentación añadida aquí
