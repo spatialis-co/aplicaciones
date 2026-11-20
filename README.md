@@ -1,6 +1,6 @@
 # aplicaciones
 
-Aplicaciones web geoespaciales de demostración de [Spatialis S.A.S.](https://spatialis.co)
+Aplicaciones web geoespaciales de demostración de [Spatialis S.A.S.](https://spatialis.com.co)
 
 Página de inicio con las dos demos: <https://spatialis-co.github.io/aplicaciones/>
 
@@ -57,7 +57,7 @@ Estos cambios tocan paquetes compilados. Están anotados aquí porque **se perde
 
 **Configuración del proyecto anterior.** El entorno compilado apuntaba al portal privado `gisrealidad5.com`, a tres WebMaps alojados en él, a un tablero externo que se incrustaba en un `iframe`, a un manual en Google Drive y a una IP interna en un comentario; el proyecto figuraba como «Zipaquirá». Todo eso quedaba a la vista en un repositorio público, y el `.map` lo servía además en TypeScript legible.
 
-Ahora el entorno no apunta a ningún portal ni identificador de WebMap: el mapa se arma en `chargeMap()` con capas propias. El módulo `dashboard` queda desactivado porque ya no hay tablero propio que mostrar, `documentationUrl` apunta a spatialis.co y el proyecto se llama «Demo Colombia». El servicio de impresión ya era el público de Esri; solo se limpió el comentario.
+Ahora el entorno no apunta a ningún portal ni identificador de WebMap: el mapa se arma en `chargeMap()` con capas propias. El módulo `dashboard` queda desactivado porque ya no hay tablero propio que mostrar, `documentationUrl` apunta a spatialis.com.co y el proyecto se llama «Demo Colombia». El servicio de impresión ya era el público de Esri; solo se limpió el comentario.
 
 ### Dashboard SIG (`appDashboardSIG/main-NCMCTQSL.js`)
 
@@ -82,4 +82,4 @@ Código de demostración, todos los derechos reservados. Consulta el archivo `LI
 
 ## Contacto
 
-Spatialis S.A.S. · <https://spatialis.co> · desarrollo@spatialis.com.co
+Spatialis S.A.S. · <https://spatialis.com.co> · desarrollo@spatialis.com.co

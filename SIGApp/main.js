@@ -8507,7 +8507,7 @@ const environment = {
   apiKeyArcGIS: null,
   imagesDate: "Diciembre 2023",
   dashboardUrl: "",
-  documentationUrl: "https://spatialis.co",
+  documentationUrl: "https://spatialis.com.co",
   modules: {
     view360: true,
     baseMapGallery: true,
