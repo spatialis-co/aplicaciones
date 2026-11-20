@@ -49,7 +49,15 @@ Ambas hojas se cargan después de los estilos compilados. **Si una aplicación s
 
 ## Correcciones aplicadas sobre la compilación
 
-Dos cambios tocan el paquete compilado del dashboard (`appDashboardSIG/main-NCMCTQSL.js`). Están anotados aquí porque **se perderán en la siguiente compilación** y hay que corregirlos en el código fuente:
+Estos cambios tocan paquetes compilados. Están anotados aquí porque **se perderán en la siguiente compilación** y hay que corregirlos en el código fuente.
+
+### SIGApp (`SIGApp/main.js` y `SIGApp/main.js.map`)
+
+**Configuración del proyecto anterior.** El entorno compilado apuntaba al portal privado `gisrealidad5.com`, a tres WebMaps alojados en él, a un tablero externo que se incrustaba en un `iframe`, a un manual en Google Drive y a una IP interna en un comentario; el proyecto figuraba como «Zipaquirá». Todo eso quedaba a la vista en un repositorio público, y el `.map` lo servía además en TypeScript legible.
+
+Ahora el entorno no apunta a ningún portal ni identificador de WebMap: el mapa se arma en `chargeMap()` con capas propias. El módulo `dashboard` queda desactivado porque ya no hay tablero propio que mostrar, `documentationUrl` apunta a spatialis.co y el proyecto se llama «Demo Colombia». El servicio de impresión ya era el público de Esri; solo se limpió el comentario.
+
+### Dashboard SIG (`appDashboardSIG/main-NCMCTQSL.js`)
 
 1. **Rutas de datos absolutas.** El código pedía `/data/municipios.json` y `/data/demo-events.json`. En GitHub Pages el sitio vive en `/aplicaciones/appDashboardSIG/`, así que esas rutas resolvían contra la raíz del dominio y devolvían 404. Los eventos se salvaban por una ruta alternativa; la capa de municipios **nunca llegaba a cargar**. Ahora son relativas y resuelven contra el `<base href>`.
 

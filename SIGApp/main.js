@@ -7285,8 +7285,8 @@ class PrintComponent {
     new _arcgis_core_widgets_Print__WEBPACK_IMPORTED_MODULE_0__["default"]({
       view: this.mapService.getViewMap(),
       container: "printContainer",
-      // this is gisrealidad5 print service.
-      printServiceUrl: "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task" //https://gisrealidad5.com/server/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task
+      // Servicio público de impresión de Esri, de acceso anónimo.
+      printServiceUrl: "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
     });
   }
 }
@@ -8490,20 +8490,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "environment": () => (/* binding */ environment)
 /* harmony export */ });
+// Configuración de la demo pública. No debe apuntar a portales, mapas ni
+// documentos de ningún proyecto de cliente: esta compilación se publica en un
+// repositorio público. El mapa se arma en chargeMap() con capas propias, así
+// que no hace falta ningún portal ni identificador de WebMap.
 const environment = {
   production: true,
   apiUrl: "",
-  project: "Zipaquirá",
+  project: "Demo Colombia",
   login: false,
   version: "3.3",
-  portalUrl: "https://gisrealidad5.com/portal/",
-  mapId: "b59ec7c5772240b4abcaae57d072a301",
-  mapIdPot: "ab41fdd5f9184f3fa251c49b456c287f",
-  mapIdfact: "a82bb4fb3c6f455e8893cbba05f4dc5b",
+  portalUrl: "",
+  mapId: "",
+  mapIdPot: "",
+  mapIdfact: "",
   apiKeyArcGIS: null,
   imagesDate: "Diciembre 2023",
-  dashboardUrl: "https://gisrealidad5.com/portal/apps/dashboards/a82bb4fb3c6f455e8893cbba05f4dc5b",
-  documentationUrl: "https://drive.google.com/file/d/1a1nHHbRTxpW2emJ2EqGXbiKfciuRICR7/view?usp=sharing",
+  dashboardUrl: "",
+  documentationUrl: "https://spatialis.co",
   modules: {
     view360: true,
     baseMapGallery: true,
@@ -8516,7 +8520,9 @@ const environment = {
     addLayer: true,
     overviewMap: true,
     print: true,
-    dashboard: true,
+    // El panel de dashboard incrustaba un tablero alojado fuera; sin URL
+    // propia que mostrar, el botón se oculta.
+    dashboard: false,
     editor: false,
     mapPot: false,
     allowdownload: true
