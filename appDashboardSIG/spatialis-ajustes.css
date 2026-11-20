@@ -25,10 +25,29 @@
   --bs-focus-ring-color: rgba(0, 113, 197, .25);
 }
 
-/* La marca de la barra lateral toma el azul corporativo */
+/* La marca de la barra lateral usa el isotipo oficial de Spatialis en vez del
+   icono de globo genérico. El pin es azul sobre transparente, así que se lee
+   bien tanto en la barra clara como en la oscura. */
 .nav-brand-icon {
-  background: linear-gradient(145deg, #0071c5, #0093d5) !important;
-  color: #fff !important;
+  position: relative;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.nav-brand-icon .bi,
+.nav-brand-icon i { display: none !important; }
+
+.nav-brand-icon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url(spatialis-isotipo.png) center / contain no-repeat;
+  filter: drop-shadow(0 1px 3px rgba(0, 40, 85, .18));
+}
+
+/* en modo oscuro el isotipo azul recibe un leve resplandor cian, como el sitio */
+.dark .nav-brand-icon::before {
+  filter: drop-shadow(0 0 10px rgba(0, 199, 253, .4));
 }
 
 /* ------------------------------------------------------- foco accesible */
