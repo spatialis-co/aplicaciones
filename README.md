@@ -1,37 +1,75 @@
 # aplicaciones
 
-Aplicaciones web geoespaciales de demostración de [Spatialis S.A.S.](https://spatialis.com.co)
+Aplicaciones web geoespaciales de demostración de [Spatialis S.A.S.](https://spatialis.co)
 
-Página de inicio con las dos demos: https://spatialis-co.github.io/aplicaciones/
+Página de inicio con las dos demos: <https://spatialis-co.github.io/aplicaciones/>
 
 ## Demos
 
-### SIGApp
+### SIGApp · Geovisor municipal
 
-Visor SIG con barra de herramientas, construido con Angular y componentes de ArcGIS (Esri y Calcite).
+Visor SIG con barra de herramientas, construido con Angular y el ArcGIS Maps SDK for JavaScript (componentes de Esri y Calcite).
 
-- Demo: https://spatialis-co.github.io/aplicaciones/SIGApp/
-- Carpeta: SIGApp/
+Abre sobre un encuadre nacional con dos capas de contexto cargadas por defecto:
 
-### Dashboard SIG
+| Capa | Entidades | Archivo |
+|---|---|---|
+| Departamentos de Colombia | 33 | `SIGApp/assets/layers/colombia-departamentos.geojson` |
+| Ciudades de Colombia | 72, símbolo proporcional a población | `SIGApp/assets/layers/colombia-ciudades.geojson` |
+
+- Demo: <https://spatialis-co.github.io/aplicaciones/SIGApp/>
+- Carpeta: `SIGApp/`
+
+### Dashboard SIG · Analítica territorial
 
 Panel de control con mapa interactivo (MapLibre GL y deck.gl), construido con Angular. Incluye los módulos Mapa, Analítica, Alertas y Configuración. En el módulo Mapa hay un resumen por categoría y ciudad, filtros, estilos de mapa y capas.
 
-Usa un conjunto de eventos de demostración incluido en el repositorio (appDashboardSIG/data/demo-events.json), con puntos agrupados en clústeres sobre el mapa.
+Usa un conjunto de 1.400 eventos de demostración incluido en el repositorio (`appDashboardSIG/data/demo-events.json`), agrupados en clústeres sobre el mapa.
 
-- Demo: https://spatialis-co.github.io/aplicaciones/appDashboardSIG/
-- Carpeta: appDashboardSIG/
+- Demo: <https://spatialis-co.github.io/aplicaciones/appDashboardSIG/>
+- Carpeta: `appDashboardSIG/`
 
 ## Contenido del repositorio
 
-Este repositorio contiene únicamente la compilación publicada de cada aplicación (archivos estáticos para GitHub Pages). El código fuente de las aplicaciones no está incluido.
+Este repositorio contiene únicamente la **compilación publicada** de cada aplicación (archivos estáticos para GitHub Pages). El código fuente de las aplicaciones no está incluido, vive en sus propios repositorios.
 
-Las páginas usan rutas base /aplicaciones/SIGApp/ y /aplicaciones/appDashboardSIG/, por lo que deben servirse desde una carpeta llamada aplicaciones. Si cambia el nombre del repositorio, hay que volver a compilar las aplicaciones con la nueva ruta base.
+Las páginas usan rutas base `/aplicaciones/SIGApp/` y `/aplicaciones/appDashboardSIG/`, por lo que deben servirse desde una carpeta llamada `aplicaciones`. Si cambia el nombre del repositorio, hay que volver a compilar las aplicaciones con la nueva ruta base.
+
+## Capa de presentación añadida aquí
+
+Como el fuente no está en este repositorio, los ajustes de marca y de comportamiento en móvil se aplican **por encima** de la compilación, sin tocarla:
+
+| Archivo | Qué hace |
+|---|---|
+| `SIGApp/spatialis-ajustes.css` | Barra de herramientas en azul corporativo, barra desplazable en pantallas estrechas, diálogos y widgets del SDK acotados al ancho de la pantalla, área táctil de 44 px |
+| `appDashboardSIG/spatialis-ajustes.css` | Paleta corporativa; por debajo de 900 px la barra lateral de 260 px pasa a navegación inferior, el buscador deja de desbordar y el panel de filtros se convierte en hoja inferior |
+| `*/index.html` | Título, descripción y Open Graph propios, `lang="es"`, precarga de capas y pantalla de carga de marca mientras arranca Angular |
+
+Ambas hojas se cargan después de los estilos compilados. **Si una aplicación se recompila desde su repositorio de código, conviene llevar estos ajustes al fuente y borrar el archivo correspondiente.**
+
+## Correcciones aplicadas sobre la compilación
+
+Dos cambios tocan el paquete compilado del dashboard (`appDashboardSIG/main-NCMCTQSL.js`). Están anotados aquí porque **se perderán en la siguiente compilación** y hay que corregirlos en el código fuente:
+
+1. **Rutas de datos absolutas.** El código pedía `/data/municipios.json` y `/data/demo-events.json`. En GitHub Pages el sitio vive en `/aplicaciones/appDashboardSIG/`, así que esas rutas resolvían contra la raíz del dominio y devolvían 404. Los eventos se salvaban por una ruta alternativa; la capa de municipios **nunca llegaba a cargar**. Ahora son relativas y resuelven contra el `<base href>`.
+
+2. **Capa de municipios de relleno.** `municipios.json` contenía siete polígonos rectangulares. Se reemplazó por límites municipales reales de las mismas siete ciudades, con el mismo esquema de atributos (`id`, `MUNICIPIO`, `DEPARTAMENTO`, `NOMBRE`).
+
+## Datos
+
+| Archivo | Fuente | Licencia |
+|---|---|---|
+| `SIGApp/assets/layers/colombia-*.geojson` | Natural Earth | Dominio público |
+| `appDashboardSIG/data/municipios.json` | geoBoundaries ADM2, salvo Barranquilla | CC BY 4.0 |
+| ídem, Barranquilla | OpenStreetMap | ODbL |
+| `appDashboardSIG/data/demo-events.json` | Datos de demostración sintéticos | — |
+
+Las capas de Colombia se generan con `tools/build_colombia.py` del repositorio [geovisores](https://github.com/spatialis-co/geovisores).
 
 ## Licencia
 
-Código de demostración, todos los derechos reservados. Consulta el archivo LICENSE. Las librerías de terceros conservan sus propias licencias; en el dashboard, el detalle está en appDashboardSIG/3rdpartylicenses.txt.
+Código de demostración, todos los derechos reservados. Consulta el archivo `LICENSE`. Las librerías de terceros conservan sus propias licencias; en el dashboard, el detalle está en `appDashboardSIG/3rdpartylicenses.txt`.
 
 ## Contacto
 
-Spatialis S.A.S. - https://spatialis.com.co - desarrollo@spatialis.com.co
+Spatialis S.A.S. · <https://spatialis.co> · desarrollo@spatialis.com.co

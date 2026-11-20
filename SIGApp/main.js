@@ -5742,8 +5742,117 @@ class MapViewComponent {
       visible: false,
       title: "Unidad de Planeamiento Local"
     });
+    // Capas nacionales de contexto, visibles al abrir: dan referencia
+    // territorial inmediata sin depender de ningun servicio externo.
+    // Derivadas de Natural Earth (dominio publico).
+    const departamentosLayer = new _arcgis_core_layers_GeoJSONLayer_js__WEBPACK_IMPORTED_MODULE_8__["default"]({
+      url: "./assets/layers/colombia-departamentos.geojson",
+      visible: true,
+      title: "Departamentos de Colombia",
+      copyright: "Natural Earth · Spatialis S.A.S.",
+      renderer: {
+        type: "simple",
+        symbol: {
+          type: "simple-fill",
+          color: [0, 113, 197, 0.1],
+          outline: {
+            color: [0, 113, 197, 0.9],
+            width: 1.1
+          }
+        }
+      },
+      labelingInfo: [{
+        labelExpressionInfo: {
+          expression: "Upper($feature.nombre)"
+        },
+        symbol: {
+          type: "text",
+          color: [15, 35, 60],
+          haloColor: [255, 255, 255],
+          haloSize: 1.5,
+          font: {
+            size: 10,
+            weight: "bold"
+          }
+        },
+        labelPlacement: "always-horizontal",
+        maxScale: 1200000
+      }],
+      popupTemplate: {
+        title: "{nombre}",
+        content: [{
+          type: "fields",
+          fieldInfos: [{
+            fieldName: "tipo",
+            label: "Tipo"
+          }, {
+            fieldName: "iso",
+            label: "Código ISO 3166-2"
+          }]
+        }]
+      }
+    });
+    const ciudadesLayer = new _arcgis_core_layers_GeoJSONLayer_js__WEBPACK_IMPORTED_MODULE_8__["default"]({
+      url: "./assets/layers/colombia-ciudades.geojson",
+      visible: true,
+      title: "Ciudades de Colombia",
+      copyright: "Natural Earth · Spatialis S.A.S.",
+      renderer: {
+        type: "simple",
+        symbol: {
+          type: "simple-marker",
+          style: "circle",
+          color: [0, 147, 213, 0.95],
+          outline: {
+            color: [255, 255, 255],
+            width: 1
+          }
+        },
+        // El tamano codifica la poblacion; el color se mantiene constante.
+        visualVariables: [{
+          type: "size",
+          field: "poblacion",
+          stops: [{
+            value: 50000,
+            size: 6
+          }, {
+            value: 300000,
+            size: 13
+          }, {
+            value: 1000000,
+            size: 20
+          }, {
+            value: 8000000,
+            size: 30
+          }]
+        }]
+      },
+      // Sin rotulos propios: el mapa base de Esri ya nombra las ciudades y
+      // duplicarlos ensucia la lectura. El simbolo aporta la magnitud.
+      labelsVisible: false,
+      popupTemplate: {
+        title: "{nombre}",
+        content: [{
+          type: "fields",
+          fieldInfos: [{
+            fieldName: "departamento",
+            label: "Departamento"
+          }, {
+            fieldName: "poblacion",
+            label: "Población",
+            format: {
+              digitSeparator: true,
+              places: 0
+            }
+          }, {
+            fieldName: "rango",
+            label: "Rango"
+          }]
+        }]
+      }
+    });
     const map = new _arcgis_core_Map__WEBPACK_IMPORTED_MODULE_1__["default"]({
-      layers: [upllayer],
+      layers: [departamentosLayer, ciudadesLayer, upllayer],
       basemap: "streets-vector"
     });
     // const webmap = new WebMap({
@@ -5754,8 +5863,13 @@ class MapViewComponent {
     const viewMap = new _arcgis_core_views_MapView__WEBPACK_IMPORTED_MODULE_0__["default"]({
       map: map,
       container: container,
-      center: [-74.08175, 4.60971],
-      zoom: 10
+      // Encuadre nacional: la demo abre mostrando todo el país y no un
+      // municipio concreto, que es lo que espera ver un cliente nuevo.
+      center: [-73.8, 4.4],
+      zoom: 5.5,
+      constraints: {
+        minZoom: 3
+      }
     });
     // viewMap.on("pointer-move", function (event) {
     //   const point: Point = viewMap.toMap({

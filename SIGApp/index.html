@@ -1,23 +1,161 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
-  <title>SIGApp</title>
+  <title>SIGApp · Geovisor municipal | Spatialis</title>
   <base href="/aplicaciones/SIGApp/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description"
+    content="Geovisor SIG con herramientas de consulta, medición, impresión y vista 360°, sobre la cartografía de Colombia: 33 departamentos y 72 ciudades. Demo de Spatialis S.A.S. construida con Angular y el ArcGIS Maps SDK.">
+  <meta property="og:title" content="SIGApp · Geovisor municipal | Spatialis">
+  <meta property="og:description"
+    content="Visor SIG con capas de Colombia, medición, impresión y vista panorámica. Demo de Spatialis S.A.S.">
+  <meta property="og:type" content="website">
   <link rel="icon" type="image/x-icon" href="favicon.png">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script src="assets/panoramic/tour.js"></script>
+
+  <link rel="preconnect" href="https://js.arcgis.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.arcgis.com" crossorigin>
+  <link rel="preconnect" href="https://basemaps.arcgis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Las capas nacionales se piden en paralelo con el arranque de Angular -->
+  <link rel="preload" href="assets/layers/colombia-departamentos.geojson" as="fetch" crossorigin>
+  <link rel="preload" href="assets/layers/colombia-ciudades.geojson" as="fetch" crossorigin>
+
+  <!-- Los iconos no deben bloquear el primer pintado -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" media="print"
+    onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </noscript>
+
+  <script src="assets/panoramic/tour.js" defer></script>
   <script type="text/javascript"> var dojoConfig = { parseOnLoad: true, locale: "es" }; </script>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Ajustes de marca y responsive de Spatialis: siempre al final -->
+  <link rel="stylesheet" href="spatialis-ajustes.css">
+
+  <style>
+    /* El SDK de ArcGIS tarda en inicializar. Sin esta pantalla el usuario ve
+       un blanco sin explicación durante varios segundos. */
+    #sp-arranque {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      background: #060b17;
+      color: #f8fafc;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      transition: opacity .4s ease, visibility .4s;
+    }
+
+    #sp-arranque[hidden] { display: grid; opacity: 0; visibility: hidden; }
+    #sp-arranque .sp-caja { display: grid; justify-items: center; gap: 14px; text-align: center; padding: 24px; }
+
+    #sp-arranque .sp-marca {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: #0071c5;
+      display: grid;
+      place-items: center;
+      animation: sp-latido 1.8s cubic-bezier(.16, 1, .3, 1) infinite;
+    }
+
+    #sp-arranque .sp-txt { font-size: 13.5px; font-weight: 500; color: #94a3b8; }
+    #sp-arranque .sp-sub { font-size: 11.5px; color: #64748b; }
+
+    #sp-arranque .sp-barra {
+      width: 170px;
+      height: 3px;
+      border-radius: 99px;
+      background: #111e38;
+      overflow: hidden;
+    }
+
+    #sp-arranque .sp-barra::after {
+      content: "";
+      display: block;
+      width: 42%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #00c7fd, transparent);
+      animation: sp-barrido 1.3s linear infinite;
+    }
+
+    @keyframes sp-latido {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 199, 253, .34); }
+      50% { transform: scale(1.05); box-shadow: 0 0 0 14px rgba(0, 199, 253, 0); }
+    }
+
+    @keyframes sp-barrido {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(338%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #sp-arranque .sp-marca, #sp-arranque .sp-barra::after { animation: none; }
+    }
+  </style>
 </head>
 
 <body class="mat-typography">
+  <div id="sp-arranque" role="status" aria-live="polite">
+    <div class="sp-caja">
+      <span class="sp-marca" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="#fff" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+        </svg>
+      </span>
+      <div>
+        <div class="sp-txt">Cargando el geovisor…</div>
+        <div class="sp-sub">spatialis · cartografía de Colombia</div>
+      </div>
+      <div class="sp-barra"></div>
+    </div>
+  </div>
+
   <app-root></app-root>
+
+  <script>
+    /* Se retira cuando el mapa base ya cargó de verdad. El lienzo del SDK
+       aparece en el DOM mucho antes de tener algo pintado, así que la señal
+       que sirve es la atribución: el SDK solo la rellena cuando la primera
+       capa del mapa base ha respondido. */
+    (function () {
+      var velo = document.getElementById("sp-arranque");
+      if (!velo) return;
+
+      var reloj = null;
+      var limite = null;
+
+      function quitar() {
+        clearInterval(reloj);
+        clearTimeout(limite);
+        velo.hidden = true;
+        setTimeout(function () { velo.remove(); }, 500);
+      }
+
+      function listo() {
+        var attr = document.querySelector(".esri-attribution__sources");
+        return attr && attr.textContent.trim().length > 0;
+      }
+
+      reloj = setInterval(function () {
+        if (listo()) setTimeout(quitar, 500);
+      }, 250);
+
+      /* red de seguridad: nunca dejar el velo puesto */
+      limite = setTimeout(quitar, 25000);
+    })();
+  </script>
   <script src="runtime.js" type="module"></script>
   <script src="polyfills.js" type="module"></script>
   <script src="scripts.js" defer></script>

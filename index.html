@@ -1,39 +1,558 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aplicaciones | Spatialis S.A.S.</title>
-<meta name="description" content="Aplicaciones web geoespaciales de demostración de Spatialis S.A.S.">
-<style>
-:root{--bg:#f6f8fa;--fg:#1f2328;--muted:#59636e;--card:#fff;--line:#d1d9e0;--accent:#0b6e75}
-@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--card:#161b22;--line:#30363d;--accent:#4fc3cc}}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--fg);line-height:1.5}
-main{max-width:760px;margin:0 auto;padding:48px 20px}
-h1{margin:0 0 8px;font-size:1.9rem}
-.lead{margin:0 0 32px;color:var(--muted)}
-.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-a.card{display:block;padding:18px;background:var(--card);border:1px solid var(--line);border-radius:10px;color:inherit;text-decoration:none}
-a.card:hover{border-color:var(--accent)}
-a.card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-a.card strong{display:block;font-size:1.1rem;color:var(--accent)}
-a.card span{color:var(--muted);font-size:.92rem}
-footer{margin-top:40px;color:var(--muted);font-size:.9rem}
-footer a{color:var(--accent)}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Aplicaciones SIG de demostración | Spatialis S.A.S.</title>
+  <meta name="description"
+    content="Dos aplicaciones web geoespaciales completas: un geovisor SIG con herramientas de consulta y medición, y un panel de control con analítica territorial. Demos de Spatialis S.A.S.">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:title" content="Aplicaciones SIG de demostración · Spatialis">
+  <meta property="og:description"
+    content="Geovisor SIG y dashboard de analítica territorial sobre la cartografía de Colombia.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+
+  <style>
+    :root {
+      --bg: #060b17;
+      --surface: #0b1528;
+      --elev: #111e38;
+      --border: #1e3a5f;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --faint: #64748b;
+      --cyan: #00c7fd;
+      --blue: #0071c5;
+      --ease: cubic-bezier(.16, 1, .3, 1);
+      --font: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fondo, .rejilla {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .fondo {
+      background:
+        radial-gradient(90% 60% at 50% -10%, rgba(0, 113, 197, .22) 0%, transparent 60%),
+        linear-gradient(to bottom, #081021 0%, #060b17 55%);
+    }
+
+    .rejilla {
+      background-size: 48px 48px;
+      background-image:
+        linear-gradient(to right, rgba(0, 113, 197, .07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 113, 197, .07) 1px, transparent 1px);
+      mask-image: radial-gradient(80% 55% at 50% 0%, #000 0%, transparent 75%);
+    }
+
+    /* ----------------------------------------------------------- barra */
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      height: 60px;
+      padding: 0 24px;
+      background: rgba(11, 21, 40, .92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .marca {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: inherit;
+      text-decoration: none;
+      flex: none;
+    }
+
+    .marca__icono {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--blue);
+      display: grid;
+      place-items: center;
+      transition: transform 200ms var(--ease);
+    }
+
+    .marca:hover .marca__icono { transform: scale(1.06); }
+    .marca__icono svg { width: 17px; height: 17px; display: block; }
+
+    .marca__nombre {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      text-transform: lowercase;
+    }
+
+    .topbar__sep { width: 1px; height: 22px; background: var(--border); flex: none; }
+
+    .topbar__titulo {
+      min-width: 0;
+      font-size: 13.5px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .topbar__acciones { margin-left: auto; display: flex; gap: 8px; flex: none; }
+
+    .enlace {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      padding: 0 13px;
+      border-radius: 7px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 160ms var(--ease);
+    }
+
+    .enlace:hover { background: #008be3; }
+    .enlace:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0, 199, 253, .55); }
+
+    .enlace--fantasma {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .enlace--fantasma:hover { background: var(--elev); color: var(--text); }
+
+    /* ------------------------------------------------------- contenido */
+
+    .contenido {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+      flex: 1;
+    }
+
+    .hero { padding: 64px 0 44px; max-width: 62ch; }
+
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 5px 12px;
+      border: 1px solid rgba(0, 199, 253, .3);
+      border-radius: 999px;
+      background: rgba(0, 199, 253, .07);
+      color: var(--cyan);
+      font-size: 11.5px;
+      font-weight: 500;
+    }
+
+    .punto {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 0 3px rgba(52, 211, 153, .18);
+    }
+
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+      font-weight: 700;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(100deg, var(--cyan), #7dd3fc 55%, var(--blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    /* -------------------------------------------------------- tarjetas */
+
+    .tarjetas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+    }
+
+    .tarjeta {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(170deg, rgba(17, 30, 56, .85), rgba(10, 20, 38, .85));
+      color: inherit;
+      text-decoration: none;
+      overflow: hidden;
+      transition: border-color 200ms var(--ease), transform 220ms var(--ease),
+        box-shadow 220ms var(--ease);
+    }
+
+    .tarjeta::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: radial-gradient(70% 50% at 80% 0%, rgba(0, 199, 253, .14), transparent 70%);
+      opacity: 0;
+      transition: opacity 240ms var(--ease);
+    }
+
+    .tarjeta:hover {
+      border-color: rgba(0, 199, 253, .55);
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px -22px rgba(0, 0, 0, .9);
+    }
+
+    .tarjeta:hover::after { opacity: 1; }
+    .tarjeta:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0, 199, 253, .55); }
+
+    .tarjeta__icono {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 16px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: rgba(0, 199, 253, .1);
+      color: var(--cyan);
+    }
+
+    .tarjeta__icono svg { width: 21px; height: 21px; }
+
+    .tarjeta__pila {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--cyan);
+    }
+
+    .tarjeta h2 {
+      margin: 8px 0 8px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+    }
+
+    .tarjeta p {
+      margin: 0 0 18px;
+      font-size: .92rem;
+      line-height: 1.62;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .lista {
+      margin: 0 0 18px;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 7px;
+    }
+
+    .lista li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: .86rem;
+      color: var(--muted);
+    }
+
+    .lista svg { width: 14px; height: 14px; flex: none; margin-top: 3px; color: var(--cyan); }
+
+    .tarjeta__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--cyan);
+    }
+
+    .tarjeta__cta svg { width: 15px; height: 15px; transition: transform 200ms var(--ease); }
+    .tarjeta:hover .tarjeta__cta svg { transform: translateX(3px); }
+
+    /* ----------------------------------------------------------- cierre */
+
+    .cierre {
+      margin: 56px 0 72px;
+      padding: 32px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background:
+        radial-gradient(100% 140% at 0% 0%, rgba(0, 113, 197, .3), transparent 60%),
+        var(--surface);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .cierre__texto { flex: 1; min-width: 240px; }
+
+    .cierre h2 {
+      margin: 0 0 7px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+    }
+
+    .cierre p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.6; }
+
+    .boton {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 44px;
+      padding: 0 20px;
+      border-radius: 9px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 160ms var(--ease), transform 160ms var(--ease);
+    }
+
+    .boton:hover { background: #008be3; transform: translateY(-1px); }
+
+    .pie {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 22px 0;
+      font-size: .83rem;
+      color: var(--faint);
+    }
+
+    .pie__fila {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      align-items: center;
+    }
+
+    .pie a { color: var(--muted); text-decoration: none; }
+    .pie a:hover { color: var(--cyan); }
+    .pie__sep { margin-left: auto; }
+
+    @media (max-width: 760px) {
+      .topbar { padding: 0 16px; gap: 10px; }
+      .topbar__sep, .topbar__titulo { display: none; }
+      .contenido { padding: 0 18px; }
+      .hero { padding: 40px 0 30px; }
+      .cierre { padding: 24px; margin: 40px 0 52px; }
+      .enlace--fantasma { display: none; }
+    }
+  </style>
 </head>
+
 <body>
-<main>
-<h1>Aplicaciones</h1>
-<p class="lead">Aplicaciones web geoespaciales de demostración de Spatialis S.A.S.</p>
-<div class="grid">
-<a class="card" href="SIGApp/"><strong>SIGApp</strong><span>Visor SIG con componentes de ArcGIS</span></a>
-<a class="card" href="appDashboardSIG/"><strong>Dashboard SIG</strong><span>Panel de control con mapa interactivo, resumen y filtros</span></a>
-</div>
-<footer>
-<p><a href="https://spatialis.com.co">spatialis.com.co</a> · <a href="https://github.com/spatialis-co/aplicaciones">Repositorio en GitHub</a> · <a href="../geovisores/">Más demos: geovisores</a></p>
-</footer>
-</main>
+  <div class="fondo" aria-hidden="true"></div>
+  <div class="rejilla" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="marca" href="https://spatialis.co">
+      <span class="marca__icono" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+        </svg>
+      </span>
+      <span class="marca__nombre">spatialis</span>
+    </a>
+
+    <span class="topbar__sep" aria-hidden="true"></span>
+    <span class="topbar__titulo">Aplicaciones de demostración</span>
+
+    <div class="topbar__acciones">
+      <a class="enlace enlace--fantasma" href="../geovisores/">Geovisores</a>
+      <a class="enlace" href="https://spatialis.co/#contacto" target="_blank" rel="noopener">Solicitar demo</a>
+    </div>
+  </header>
+
+  <main class="contenido">
+
+    <section class="hero">
+      <span class="hero__eyebrow">
+        <span class="punto"></span>
+        Aplicaciones completas, no maquetas
+      </span>
+      <h1>Dos aplicaciones SIG <em>en funcionamiento</em>, con datos de Colombia.</h1>
+      <p>
+        No son pantallazos ni prototipos: son las aplicaciones compiladas, con sus herramientas reales de consulta,
+        medición, filtrado y analítica. Abren en el navegador, sin instalar nada y sin usuario.
+      </p>
+    </section>
+
+    <section class="tarjetas">
+
+      <a class="tarjeta" href="SIGApp/">
+        <span class="tarjeta__icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" />
+            <path d="M15 5.764v15M9 3.236v15" />
+          </svg>
+        </span>
+        <span class="tarjeta__pila">Angular · ArcGIS Maps SDK · Calcite</span>
+        <h2>SIGApp · Geovisor municipal</h2>
+        <p>
+          El visor que se despliega en proyectos de catastro y ordenamiento: abre sobre la cartografía nacional y
+          lleva la caja de herramientas completa que espera un equipo técnico.
+        </p>
+        <ul class="lista">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+            Capas de Colombia cargadas por defecto: 33 departamentos y 72 ciudades
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+            Medición de distancias y áreas, consulta catastral y selección
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+            Vista panorámica 360°, impresión y carga de capas del usuario
+          </li>
+        </ul>
+        <span class="tarjeta__cta">
+          Abrir SIGApp
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </span>
+      </a>
+
+      <a class="tarjeta" href="appDashboardSIG/">
+        <span class="tarjeta__icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+            <path d="M18 17V9M13 17V5M8 17v-3" />
+          </svg>
+        </span>
+        <span class="tarjeta__pila">Angular · MapLibre GL · deck.gl</span>
+        <h2>Dashboard SIG · Analítica territorial</h2>
+        <p>
+          Panel de control para decidir con el mapa al lado: 1.400 eventos de demostración agrupados en clústeres,
+          con resumen por categoría y por ciudad que responde a los filtros en tiempo real.
+        </p>
+        <ul class="lista">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+            Clústeres, mapa de calor y límites municipales reales
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+            Módulos de Mapa, Analítica, Alertas y Configuración
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+            Modo claro y oscuro, y navegación inferior en móvil
+          </li>
+        </ul>
+        <span class="tarjeta__cta">
+          Abrir Dashboard
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </span>
+      </a>
+
+    </section>
+
+    <section class="cierre">
+      <div class="cierre__texto">
+        <h2>¿Quiere verlas con los datos de su entidad?</h2>
+        <p>
+          Estas demos usan cartografía pública. En proyecto las conectamos a su base PostGIS, a sus servicios OGC
+          o a su ArcGIS Enterprise, con modelo LADM_COL cuando el caso lo exige.
+        </p>
+      </div>
+      <a class="boton" href="https://spatialis.co/#contacto" target="_blank" rel="noopener">
+        Solicitar una demo guiada
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </a>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="pie__fila">
+      <span>© Spatialis S.A.S. · Bogotá, Colombia</span>
+      <a href="https://github.com/spatialis-co/aplicaciones" target="_blank" rel="noopener">Código en GitHub</a>
+      <a href="../geovisores/">Geovisores</a>
+      <span class="pie__sep">Datos: Natural Earth · geoBoundaries · OpenStreetMap · Esri</span>
+    </div>
+  </footer>
 </body>
+
 </html>

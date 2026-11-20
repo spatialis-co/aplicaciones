@@ -1,0 +1,109 @@
+/* ==========================================================================
+   Spatialis · Ajustes de marca y comportamiento responsivo de SIGApp
+
+   Se carga DESPUES de styles.css y no modifica el codigo fuente de la
+   aplicacion. Si SIGApp se recompila, conviene llevar estos ajustes al
+   fuente y borrar este archivo.
+   ========================================================================== */
+
+/* ----------------------------------------------------------------- marca */
+
+:root {
+  --sp-azul: #0071c5;
+  --sp-azul-oscuro: #005291;
+  --sp-cian: #0093d5;
+  --sp-tinta: #0a1329;
+}
+
+/* La barra superior pasa del lila genérico al azul corporativo */
+mat-toolbar.mat-toolbar,
+.mat-toolbar.mat-primary {
+  background: linear-gradient(90deg, var(--sp-azul), var(--sp-cian)) !important;
+  color: #fff !important;
+}
+
+mat-toolbar .mat-icon,
+mat-toolbar button,
+mat-toolbar .mat-button-wrapper {
+  color: #fff !important;
+}
+
+mat-toolbar button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* El título de la aplicación con el peso de la marca */
+mat-toolbar .title,
+mat-toolbar span:first-of-type {
+  letter-spacing: -.01em;
+}
+
+/* --------------------------------------------------- superficie del mapa */
+
+/* Mientras el SDK de ArcGIS inicializa, el contenedor queda en blanco; un
+   fondo neutro evita el destello. */
+.esri-view,
+#viewDiv,
+.map-container {
+  background: #eef2f7;
+}
+
+/* =====================================================================
+   Pantallas pequenas
+   ===================================================================== */
+
+@media (max-width: 860px) {
+
+  /* La barra de herramientas no cabe en una linea: se deja desplazar en
+     horizontal en vez de cortar botones. */
+  mat-toolbar.mat-toolbar {
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  mat-toolbar.mat-toolbar::-webkit-scrollbar { display: none; }
+
+  mat-toolbar button {
+    flex: 0 0 auto;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Los diálogos del SDK ocupaban un ancho fijo mayor que la pantalla */
+  .mat-mdc-dialog-panel,
+  .mat-mdc-dialog-surface,
+  .cdk-overlay-pane {
+    max-width: calc(100vw - 20px) !important;
+  }
+
+  /* El popup de Esri se ancla abajo y no flotando sobre el punto */
+  .esri-popup__main-container {
+    max-width: calc(100vw - 20px) !important;
+  }
+
+  /* Widgets del SDK con área táctil suficiente */
+  .esri-widget--button {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  mat-toolbar.mat-toolbar {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    font-size: 16px;
+  }
+
+  /* la barra de escala y las coordenadas compiten por el pie */
+  #coordenadas { font-size: 10px; }
+}
+
+@media (pointer: coarse) {
+  .esri-widget--button,
+  mat-toolbar button { min-height: 44px; }
+}
