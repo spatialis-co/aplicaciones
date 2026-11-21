@@ -205,3 +205,15 @@
   .nav-link,
   .sidebar-toggle-btn { min-height: 44px; }
 }
+
+/* ===== Barra de navegación oculta por defecto =====
+   El app alterna la clase .collapsed con el botón de menú (☰) del encabezado.
+   Aquí ese estado se vuelve "oculta del todo" (no un riel de iconos), y un
+   script en index.html la colapsa al cargar. El ☰ la vuelve a mostrar. */
+.app-container .nav-sidebar.collapsed {
+  width: 0 !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+}

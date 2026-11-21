@@ -1,10 +1,14 @@
 <!doctype html>
-<html lang="es" data-beasties-container>
+<html lang="es" data-theme="light" data-beasties-container>
 
 <head>
   <meta charset="utf-8">
   <title>Dashboard SIG · Analítica territorial | Spatialis</title>
   <base href="/aplicaciones/appDashboardSIG/">
+  <meta name="color-scheme" content="light">
+  <!-- Puente de tema: resuelve y aplica el tema antes de que arranque Angular
+       (anti-FOUC) y sincroniza en vivo con la web padre. Debe ir síncrono. -->
+  <script src="spatialis-theme-bridge.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description"
     content="Panel de control geoespacial con mapa interactivo, agrupamiento de eventos, mapas de calor, filtros y analítica por categoría y ciudad. Demo de Spatialis S.A.S. construida con Angular, MapLibre GL y deck.gl.">
@@ -224,7 +228,7 @@
 
   <!-- Ajustes de marca y responsive de Spatialis; siempre después de los
        estilos compilados para que puedan sobrescribirlos. -->
-  <link rel="stylesheet" href="spatialis-ajustes.css?v=2">
+  <link rel="stylesheet" href="spatialis-ajustes.css?v=3">
 
   <style>
     /* Pantalla de carga: la aplicación tarda en arrancar y, sin esto, el
@@ -330,6 +334,28 @@
   <link rel="modulepreload" href="chunk-YZTTK2AF.js">
   <script src="polyfills-ERLYOUQC.js" type="module"></script>
   <script src="main-NCMCTQSL.js" type="module"></script>
+
+  <script>
+    /* Colapsa (oculta) la barra de navegación por defecto en cuanto el app la
+       renderiza, usando su propio botón de menú; el ☰ del encabezado la abre. */
+    (function () {
+      var hecho = false;
+      function colapsar() {
+        if (hecho) return;
+        var nav = document.querySelector("nav.nav-sidebar");
+        var btn = [].slice.call(document.querySelectorAll("button.icon-btn"))
+          .filter(function (b) { return /colapsar|men[uú]/i.test(b.title || ""); })[0];
+        if (nav && btn && !nav.classList.contains("collapsed")) {
+          btn.click();
+          hecho = true;
+          obs.disconnect();
+        }
+      }
+      var obs = new MutationObserver(colapsar);
+      obs.observe(document.documentElement, { childList: true, subtree: true });
+      setTimeout(function () { obs.disconnect(); }, 10000);
+    })();
+  </script>
 </body>
 
 </html>
