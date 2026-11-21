@@ -5737,11 +5737,6 @@ class MapViewComponent {
   }
   chargeMap() {
     const container = this.mapViewEl.nativeElement;
-    const upllayer = new _arcgis_core_layers_GeoJSONLayer_js__WEBPACK_IMPORTED_MODULE_8__["default"]({
-      url: "./assets/layers/upl.geojson",
-      visible: false,
-      title: "Unidad de Planeamiento Local"
-    });
     // Capas nacionales de contexto, visibles al abrir: dan referencia
     // territorial inmediata sin depender de ningun servicio externo.
     // Derivadas de Natural Earth (dominio publico).
@@ -5852,7 +5847,7 @@ class MapViewComponent {
       }
     });
     const map = new _arcgis_core_Map__WEBPACK_IMPORTED_MODULE_1__["default"]({
-      layers: [departamentosLayer, ciudadesLayer, upllayer],
+      layers: [departamentosLayer, ciudadesLayer],
       basemap: "streets-vector"
     });
     // const webmap = new WebMap({
