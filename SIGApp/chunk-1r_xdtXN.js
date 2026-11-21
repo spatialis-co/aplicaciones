@@ -1,0 +1,1 @@
+import{t}from"./chunk-CXVnIk5r.js";import{Mo as $t,No as Ht}from"./main-CNE3WXM6.js";var c=new t;function u(e,r,t){return c.execute(e,r,t,null)}function p(e,r){let t=Ht(e);return u(t.getGeometry(),$t(r),t.getSpatialReference())}export{p as overlapsExecute};

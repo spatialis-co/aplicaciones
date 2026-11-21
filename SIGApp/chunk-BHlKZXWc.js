@@ -1,0 +1,1 @@
+import{mU as O}from"./main-CNE3WXM6.js";function a(t,i){if(t&&i){for(let e of t.children)if(e.localName in i){let l=i[e.localName];if(typeof l==`function`){let o=l(e);o&&a(e,o)}else a(e,l)}}}function*c(t,i){for(let e of t.children)if(e.localName in i){let l=i[e.localName];typeof l==`function`?yield l(e):yield*O(c(e,l))}}export{c as n,a as t};

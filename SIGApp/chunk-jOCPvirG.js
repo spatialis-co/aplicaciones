@@ -1,0 +1,1 @@
+import{EI as i$1,lR as H}from"./main-CNE3WXM6.js";function s(r,t){return r===t||r!=null&&t!=null&&H(r.spatialReference,t.spatialReference)&&r.x===t.x&&r.y===t.y&&r.z===t.z&&r.m===t.m}function i(r,t,n){return r===t||r!=null&&t!=null&&H(r.spatialReference,t.spatialReference)&&i$1(r.x,t.x,n)&&i$1(r.y,t.y,n)&&i$1(r.z??0,t.z??0,n)&&i$1(r.m??0,t.m??0,n)}export{s as n,i as t};

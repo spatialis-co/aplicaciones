@@ -1,0 +1,1 @@
+import{K_ as s}from"./main-CNE3WXM6.js";function i(e){return e?.name??`default`}export{i as t};

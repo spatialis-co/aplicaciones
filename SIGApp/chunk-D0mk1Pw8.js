@@ -1,0 +1,1 @@
+import{n as l,r as t,t as c}from"./chunk-DqScRRZW.js";import"./chunk-C4fVPaz-.js";import"./main-CNE3WXM6.js";export{c as extractRegion,l as getCountry,t as global};

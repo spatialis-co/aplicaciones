@@ -1,0 +1,1 @@
+import{KB as g$1,PH as g,hV as js,iz as I,qV as b$1}from"./main-CNE3WXM6.js";var b=h=>{let f=h,e=class extends f{initialize(){this.addHandles(I(()=>this.layer,`refresh`,l=>{this.doRefresh(l.dataChanged).catch(r=>{b$1(r)||g.getLogger(this).error(r)})}),`RefreshableLayerView`)}};return e=g$1([js(`esri.views.layers.RefreshableLayerView`)],e),e};export{b as t};

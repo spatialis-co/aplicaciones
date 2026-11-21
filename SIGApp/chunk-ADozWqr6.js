@@ -1,0 +1,1 @@
+import{w as z}from"./chunk-CH8G_IUY.js";var i={getObjectId(e){return e.objectId},getAttributes(e){return e.attributes},getAttribute(e,t){return e.attributes[t]},cloneWithGeometry(e,t,n){return new z(t,e.attributes,null,e.objectId,e.displayId,e.distance,e.vertexCount)},getGeometry(e){return e.geometry},getCentroid(e,t){return e.ensureCentroid(t)}};export{i as t};

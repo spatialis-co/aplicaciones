@@ -1,0 +1,1 @@
+import{n as c}from"./chunk-DVa6kTW6.js";import"./chunk-M-ju_QgP.js";import{Mo as $t,No as Ht}from"./main-CNE3WXM6.js";function m(e,t){let r=Ht(e);return c(r.getGeometry(),$t(t),r.getSpatialReference())}export{m as intersectsExecute};

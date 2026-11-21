@@ -1,0 +1,1 @@
+import{n as _p}from"./chunk-C4V5AYxb.js";var r=class extends _p{constructor(){super(...arguments),this.layer=null}};export{r as t};

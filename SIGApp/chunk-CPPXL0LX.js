@@ -1,1 +1,0 @@
-import{Fc as p,Pc as m}from"./main-IJ4OI6P6.js";var u=new p;function f(e,r,t,n){return u.execute(e,r,t,n,null)}function i(e,r,t,n){let a=u.executeMany(new m(e),r,t,n,null);return Array.from(a)}function l(){return u.supportsCurves()}export{i as n,l as r,f as t};

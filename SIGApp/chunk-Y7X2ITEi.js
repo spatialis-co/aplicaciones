@@ -1,0 +1,1 @@
+import{Dx as E,Xx as d,Zx as fe,dS as y}from"./main-CNE3WXM6.js";var u=E(class extends y{constructor(){super(...arguments),this.key=d}render(t,e){return this.key=t,e}update(t,[e,m]){return e!==this.key&&(fe(t),this.key=e),m}});export{u as t};

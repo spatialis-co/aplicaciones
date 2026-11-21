@@ -1,0 +1,1 @@
+import{KL as ea,Vo as s,bo as K,vo as H}from"./main-CNE3WXM6.js";function p(e,r={}){let{unit:o}=r,t=K(e).calculateLength2D();if(t&&o){let c=H(e);t=ea(t,c,o)}return t}function m(e,r={}){return s(`lengthOperator`,`execute`,`lengthExecute`),p(e,r)}var g=!0;var h=!0;export{p as i,h as n,m as r,g as t};
