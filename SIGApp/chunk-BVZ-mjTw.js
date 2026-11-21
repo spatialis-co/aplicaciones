@@ -1,0 +1,1 @@
+import{BI as M,lR as H,pA as o,qC as _l}from"./main-T6FMN7WU.js";function l(t,a,o,m){return t==null?!1:H(a,m)?(M(o,t),!0):(r[0]=t[0],r[1]=t[1],r[2]=0,!_l(r,a,0,r,m,0)||(o[0]=r[0],o[1]=r[1],r[0]=t[2],r[1]=t[3],r[2]=0,!_l(r,a,0,r,m,0))?!1:(o[2]=r[0],o[3]=r[1],!0))}var r=o();export{l as t};

@@ -1,0 +1,1 @@
+import{J as Zr}from"./chunk-CX-pXiXp.js";var i=class{constructor(t){this.layout=t}elementCount(t){return t.get(`position`).indices.length}write(t,o,s,e){e!=null&&Zr(s,this.layout,t,o,e)}};export{i as t};

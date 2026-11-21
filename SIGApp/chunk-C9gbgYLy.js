@@ -1,1 +1,0 @@
-import{i as y,n as w,r as x,t as l}from"./chunk-wQdom5Tb.js";import"./main-P7UYSRER.js";export{l as accelerateGeometry,x as execute,y as executeMany,w as supportsCurves};

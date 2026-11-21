@@ -1,0 +1,1 @@
+import{n as q}from"./chunk-DyXbnqL9.js";var t=class{getOperatorType(){return 10205}accelerateGeometry(e,a,o){return!1}canAccelerateGeometry(e){return!1}supportsCurves(){return!0}execute(e,a){return q(e)}};export{t};

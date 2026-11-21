@@ -1,0 +1,1 @@
+import{ic as ip,mc as np,rs as Id,xc as rs}from"./main-T6FMN7WU.js";export{ip as create,np as createFromWKT};

@@ -1,0 +1,1 @@
+import{HL as b,ag as s}from"./main-T6FMN7WU.js";function a(o){let e=1/b(o,1);return e===1?void 0:new s({scale:[e,e,e]})}export{a as t};

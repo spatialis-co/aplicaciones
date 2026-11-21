@@ -1,0 +1,1 @@
+import{Pc as m,jc as yt}from"./main-T6FMN7WU.js";var n=new yt;function c(e,r,t){return n.execute(e,r,t,null)}function f(e,r,t){let s=n.executeMany(new m(e),r,t,null);return Array.from(s)}function x(e,r,t){return n.isSimpleAsFeature(e,r,t,null,null)}function y(){return n.supportsCurves()}export{y as i,f as n,x as r,c as t};

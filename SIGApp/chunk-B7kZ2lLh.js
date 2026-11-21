@@ -1,0 +1,1 @@
+import{i as z}from"./chunk-DbGtBeD_.js";import{t as r}from"./chunk-DR9TIIlW.js";import"./chunk-prLjt3_o.js";import"./chunk--dtrlj3C.js";import{Ih as C,cU as F,fU as M}from"./main-T6FMN7WU.js";function d(s,m,p,c){return M(this,null,function*(){let f=C(s);return(yield z(f,r.from(m),F({},p),c)).data.objectIds})}export{d as executeForTopIds};

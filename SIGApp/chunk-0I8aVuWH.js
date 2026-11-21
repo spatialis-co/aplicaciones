@@ -1,1 +1,0 @@
-import{SB as ro,cU as F,fU as M}from"./main-P7UYSRER.js";function s(r,n){return M(this,null,function*(){return(yield ro(r,F({responseType:`image`},n))).data})}export{s as t};

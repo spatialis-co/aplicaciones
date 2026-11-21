@@ -1,1 +1,0 @@
-import{t as i}from"./chunk-CD2mRhdp.js";import"./chunk-BcsDQmya.js";import{fU as M}from"./main-P7UYSRER.js";function n(){return M(this,null,function*(){return i.sort().map(t=>({label:t}))})}export{n as groupByName};

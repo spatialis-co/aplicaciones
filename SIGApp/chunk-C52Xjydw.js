@@ -1,1 +1,0 @@
-import{DL as e}from"./main-P7UYSRER.js";function d(t){if(t instanceof e)return t;let{wkid:r,wkt:i,wkt2:a,latestWkid:k}=t,n={wkid:r,wkt:i,wkt2:a,latestWkid:k};return e.fromJSON(n)}export{d as t};

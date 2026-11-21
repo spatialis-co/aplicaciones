@@ -1,0 +1,1 @@
+import{a as S,c as w,i as L,n as F,o as T,r as G,s as v,t as C}from"./chunk-DRzY_8Aw.js";import"./chunk-B3NNXzb_.js";import"./main-T6FMN7WU.js";export{w as getNearestCoordinate,F as getNearestVertex,L as getNearestVertices,v as proximityGetNearestCoordinate,C as proximityGetNearestVertex,S as proximityGetNearestVertices,G as proximitySupportsCurves,T as supportsCurves};

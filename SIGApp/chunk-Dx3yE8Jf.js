@@ -1,0 +1,1 @@
+import{t}from"./chunk-B9-b1K7c.js";import{Mo as $t,No as Ht}from"./main-T6FMN7WU.js";var s=new t;function n(e,t,r){return s.execute(e,t,r,null)}function m(e,t){let r=Ht(e);return n(r.getGeometry(),$t(t),r.getSpatialReference())}export{m as touchesExecute};

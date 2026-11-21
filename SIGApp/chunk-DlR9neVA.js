@@ -1,1 +1,0 @@
-import{ic as ip,mc as np,rs as Id,xc as rs}from"./main-P7UYSRER.js";export{ip as create,np as createFromWKT};

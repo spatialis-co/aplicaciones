@@ -1,1 +1,0 @@
-import{s as ve}from"./chunk-qR1i9_7U.js";var h=class{constructor(t){this._rctx=t,this._store=/* @__PURE__ */ new Map}dispose(){this._store.forEach(t=>t.dispose()),this._store.clear()}get(t,s,r,c){let e=t+s+JSON.stringify(Array.from(r.entries())),o=this._store.get(e);if(o)return o;let i=new ve(this._rctx,t,s,r,c);return this._store.set(e,i),i}get test(){}};export{h as t};

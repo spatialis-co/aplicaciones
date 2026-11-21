@@ -1,1 +1,0 @@
-import{Pc as m,ms as Qr}from"./main-P7UYSRER.js";var o=new Qr;function l(e,r,t){return o.execute(e,r,t,null)}function x(e,r,t){let s=o.executeMany(new m(e),new m([r]),t,null);return Array.from(s)}function w(){return o.supportsCurves()}export{w as n,x as r,l as t};

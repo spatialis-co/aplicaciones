@@ -1,0 +1,1 @@
+import{Qo as Bn}from"./main-T6FMN7WU.js";var t=new Bn;function s(e,r){return t.accelerateGeometry(e,r,1)}function c(e,r,u){return t.execute(e,r,u,null)}function a(){return t.supportsCurves()}export{c as n,s as r,a as t};

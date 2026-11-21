@@ -1,1 +1,0 @@
-import{n as Et}from"./chunk-ZVuYmVmZ.js";var s=()=>Et((a,o)=>{let e=/* @__PURE__ */ new Set;return o.onDisconnected(()=>{e.forEach(r=>r.cancel())}),{add:r=>{[r].flat().forEach(c=>e.add(c))},resources:e}});export{s as t};

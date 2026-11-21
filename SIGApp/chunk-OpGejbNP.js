@@ -1,0 +1,1 @@
+import{t}from"./chunk-B9-b1K7c.js";import"./main-T6FMN7WU.js";export{t as OperatorTouches};

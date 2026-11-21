@@ -1,0 +1,1 @@
+import{KB as g,VB as B,hV as js,sV as Ss,xL as c}from"./main-T6FMN7WU.js";var t=class extends B{constructor(i){super(i),this.sourcePoint=null,this.mapPoint=null}};g([Ss()],t.prototype,`sourcePoint`,void 0),g([Ss({type:c})],t.prototype,`mapPoint`,void 0),t=g([js(`esri.layers.support.ControlPoint`)],t);export{t};

@@ -1,1 +1,0 @@
-import{t as G}from"./chunk-CI-BoDop.js";import{$O as u,qO as l}from"./main-P7UYSRER.js";function y(n,f,s){let t;for(let e of n)if(!(!e||!l(e)||`vertexAttributes`in e)){if(!t){let p=`type`in e?e.type:u(e);if(t=G(p,f,s),!t)return}t(e)}}export{y as t};

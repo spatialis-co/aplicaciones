@@ -1,0 +1,1 @@
+import{qC as _l}from"./main-T6FMN7WU.js";export{_l as projectBuffer};
