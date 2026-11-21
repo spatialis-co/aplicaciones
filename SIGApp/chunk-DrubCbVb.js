@@ -1,1 +1,0 @@
-import{Fo as Tr,Io as er,Lo as gr,Mo as $t,No as Ht,Po as Nr,Ro as tr,zo as yr}from"./main-T6FMN7WU.js";export{gr as fromGeometries,Ht as fromGeometry,$t as fromGeometryToGXGeometry,Tr as fromGeometryToGXGeometryUsingImportOperator,er as fromSpatialReference,yr as getSpatialReference,Nr as toGeometry,tr as toSpatialReference};

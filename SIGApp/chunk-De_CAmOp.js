@@ -1,0 +1,1 @@
+import{hs as Qs,ls as Lt}from"./main-IJ4OI6P6.js";var t=class extends Qs{getOperatorType(){return 4}execute(s,a,o,p){return!Lt(s,a,o,4,p)}};export{t};

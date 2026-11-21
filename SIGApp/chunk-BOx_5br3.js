@@ -1,1 +1,0 @@
-import{Pc as m,ss as Kt}from"./main-T6FMN7WU.js";var t=new Kt;function l(e,r){return t.accelerateGeometry(e,r,1)}function x(e,r,n){return t.execute(e,r,n,null)}function y(e,r,n,a){let c=t.executeMany(new m(e),new m([r]),n,null,a);return Array.from(c)}function w(){return t.supportsCurves()}export{y as i,w as n,x as r,l as t};

@@ -1,1 +1,0 @@
-import{Kx as Wn,Ux as Ti}from"./main-T6FMN7WU.js";var i={textMatch:`text-match`};function c({text:r,pattern:a}){if(!a||!r)return r;let t=r.split(a);return t.length>1&&(t[1]=Ti`<mark class=${Wn(i.textMatch)}>${t[1]}</mark>`),t}export{c as t};

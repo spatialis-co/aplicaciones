@@ -1,1 +1,0 @@
-import{n as L}from"./chunk-DbGtBeD_.js";import{t as r}from"./chunk-DR9TIIlW.js";import"./chunk-prLjt3_o.js";import"./chunk--dtrlj3C.js";import{Ih as C,cU as F,fU as M}from"./main-T6FMN7WU.js";function x(n,u,m,p){return M(this,null,function*(){let s=C(n);return(yield L(s,r.from(u),F({},m),p)).data.count})}export{x as executeForTopCount};

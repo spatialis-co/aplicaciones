@@ -1,1 +1,0 @@
-import{$s as em,Ms as Yu,Qs as eh,Xs as dt}from"./main-T6FMN7WU.js";var o=class{supportsCurves(){return!0}getOperatorType(){return 1}execute(e,r,t,c,p){return dt(e,r,t,c,p)}isValidDE9IM(e){return eh(e)===0}accelerateGeometry(e,r,t){return Yu(e,r,t)}canAccelerateGeometry(e){return em(e)}};export{o as t};

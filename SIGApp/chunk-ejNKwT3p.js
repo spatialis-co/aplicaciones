@@ -1,1 +1,0 @@
-import{K_ as s}from"./main-T6FMN7WU.js";function i(e){return e?.name??`default`}export{i as t};

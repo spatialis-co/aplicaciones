@@ -1,1 +1,0 @@
-import{t as f}from"./chunk-80VSZmEa.js";import"./chunk-0kQEYhHi.js";import"./chunk-BYx9erok.js";import"./main-T6FMN7WU.js";export{f as SegmentLabels2D};

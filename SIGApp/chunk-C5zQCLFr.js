@@ -1,0 +1,1 @@
+import{r as ne,t as D}from"./chunk-C79A0GJ0.js";function t(e,a){return a.push(e.buffer),{buffer:e.buffer,layout:new ne(e.layout)}}function n(e){return new D(e.layout).createView(e.buffer)}export{t as n,n as t};

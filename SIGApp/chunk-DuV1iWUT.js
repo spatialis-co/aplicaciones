@@ -1,0 +1,1 @@
+import{t as t$1}from"./chunk-De_CAmOp.js";var t=new t$1;function o(e,r){return t.accelerateGeometry(e,r,1)}function c(e,r,s){return t.execute(e,r,s,null)}function a(){return t.supportsCurves()}export{c as n,o as r,a as t};

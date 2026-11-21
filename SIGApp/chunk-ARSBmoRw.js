@@ -1,0 +1,1 @@
+import{a as V,i as N,n as I,r as L,t as A}from"./chunk-B5Jm9FQ9.js";import"./main-IJ4OI6P6.js";export{A as constructOrientedMinimumBoundingBox,V as execute,I as executeMany,L as isConvex,N as supportsCurves};

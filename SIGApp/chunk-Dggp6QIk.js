@@ -1,1 +1,0 @@
-import{t as u}from"./chunk-2tpu4hzg.js";import{n as b,r as w,t as _}from"./chunk-CJYWDG8F.js";import{Kx as Wn}from"./main-T6FMN7WU.js";var p=({children:e,class:n,hidden:c=!1,key:f,level:a})=>{let s=a?_(`h${a}`):w`div`;return u(f,b`<${s} class=${Wn(n)} .hidden=${c}>${e}</${s}>`)};export{p as t};

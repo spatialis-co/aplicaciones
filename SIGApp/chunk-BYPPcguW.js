@@ -1,0 +1,1 @@
+import{r as U}from"./chunk-CPxmHnLz.js";import{t as r}from"./chunk-COybqVft.js";import"./chunk-D1hdHCm0.js";import"./chunk-Sqizjwnb.js";import{Ih as C,OS as h,cU as F,fU as M}from"./main-IJ4OI6P6.js";function Q(u,p,f,i,s){return M(this,null,function*(){let n=C(u),c=F({},i),{data:l}=yield U(n,r.from(p),f,c,s);return h.fromJSON(l)})}export{Q as executeTopFeaturesQuery};
