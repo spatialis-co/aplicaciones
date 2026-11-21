@@ -1,0 +1,1 @@
+import{a as s}from"./chunk-CNK5URIR.js";import"./chunk-YJ6ZLUO2.js";import"./chunk-DIQPMGB2.js";var e=class extends s{constructor(){super(...arguments),this.bindParams=[],this.enterOC_Parameter=t=>{this.bindParams.push(t.getText())}}};export{e as default};

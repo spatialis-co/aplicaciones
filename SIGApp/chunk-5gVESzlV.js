@@ -1,0 +1,1 @@
+import{a as U,i as S,n as N,o as j,r as O,s as x,t as $}from"./chunk-DQOg8uCj.js";import"./main-P7UYSRER.js";export{$ as addOrUpdateResources,U as contentToBlob,O as fetchResources,N as getSiblingOfSameTypeI,S as removeAllResources,j as removeResource,x as splitPrefixFileNameAndExtension};

@@ -1,0 +1,1 @@
+import{co as n}from"./main-P7UYSRER.js";function p(e){e?.writtenProperties&&e.writtenProperties.forEach(({target:i,propName:t,newOrigin:r})=>{n(i)&&r&&i.originOf(t)!==r&&i.updateOrigin(t,r)})}export{p as t};

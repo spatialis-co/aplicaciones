@@ -1,0 +1,1 @@
+import{n as c}from"./chunk-L6Wa-z6u.js";import{Mo as $t,No as Ht}from"./main-P7UYSRER.js";function m(e,t){let r=Ht(e);return c(r.getGeometry(),$t(t),r.getSpatialReference())}export{m as containsExecute};

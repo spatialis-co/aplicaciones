@@ -1,0 +1,1 @@
+function t(e,a,r,s){return 1|e<<1|!!r<<2|(s===`Nearest`)<<3|a<<4}export{t};

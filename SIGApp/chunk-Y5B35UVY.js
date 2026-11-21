@@ -1,0 +1,1 @@
+import{c as r}from"./chunk-YJ6ZLUO2.js";import"./chunk-DIQPMGB2.js";var s=class extends r{constructor(){super(...arguments),this.errors=null}syntaxError(a,i,e,t,o,n){this.errors||=[],this.errors.push({line:e,column:t,msg:o,e:n})}};export{s as default};

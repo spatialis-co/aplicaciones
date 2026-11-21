@@ -1,0 +1,1 @@
+var e={min:`0`,max:`320px`};var t={min:`321px`,max:`476px`};var o={min:`477px`,max:`768px`};var c={min:`769px`,max:`1152px`};var i={min:`1153px`,max:`1440px`};var n=`12px`;var a=`16px`;var l=`0.25rem`;var x=`0.5rem`;export{l as a,t as c,i,x as l,c as n,n as o,e as r,o as s,a as t};

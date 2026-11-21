@@ -1,0 +1,1 @@
+import{K_ as s}from"./main-P7UYSRER.js";function i(e){return e?.name??`default`}export{i as t};

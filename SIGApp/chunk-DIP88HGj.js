@@ -1,0 +1,1 @@
+import{s as z}from"./chunk-BpmdkTKb.js";import{Ih as C,OS as h,cU as F,fU as M,tE as r}from"./main-P7UYSRER.js";function N(e,r,t,o){return M(this,null,function*(){let a=yield l(e,r,t,o);return h.fromJSON(a)})}function l(e,r$1,t,o){let a=C(e),p=F({},t),u=r.from(r$1);return z(a,u,u.sourceSpatialReference,p,o)}export{l as n,N as t};

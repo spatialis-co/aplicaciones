@@ -1,0 +1,1 @@
+import{t}from"./chunk-Cgz6yBEu.js";import{Mo as $t,No as Ht}from"./main-P7UYSRER.js";var c=new t;function i(e,t,r){return c.execute(e,t,r,null)}function s(e,t){let r=Ht(e);return i(r.getGeometry(),$t(t),r.getSpatialReference())}export{s as withinExecute};

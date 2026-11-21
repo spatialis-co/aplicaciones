@@ -1,0 +1,1 @@
+function a(i,n){let t=0;for(let r of n){let e=r.attributes?.[i];typeof e==`number`&&isFinite(e)&&(t=Math.max(t,e))}return t}export{a as t};

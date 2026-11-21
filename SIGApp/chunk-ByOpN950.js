@@ -1,0 +1,1 @@
+import{t as zt}from"./chunk-QM7WX9BF.js";import"./chunk-CfZ9RWSK.js";import"./chunk-BHUsRDYu.js";import"./main-P7UYSRER.js";export{zt as loadGLTF};

@@ -1,0 +1,1 @@
+import{Vk as o}from"./main-P7UYSRER.js";export{o as default};

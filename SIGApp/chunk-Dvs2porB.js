@@ -1,0 +1,1 @@
+import{fU as M,kS as p$1}from"./main-P7UYSRER.js";var n;var a=!1;var i;function p(){return n??=p$1(`arcadeGeometryOperatorsWorker`).then(e=>{i=e,a=!0,n=void 0})}function m(e,r){return M(this,null,function*(){return a?i.apply(`invokeGeometryOp`,[e,r]):(yield p(),m(e,r))})}export{m as t};

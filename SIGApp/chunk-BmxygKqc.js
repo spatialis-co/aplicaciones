@@ -1,0 +1,1 @@
+import{t}from"./chunk-DLMe0YB8.js";import{Mo as $t,No as Ht}from"./main-P7UYSRER.js";var u=new t;function n(e,r,t){return u.execute(e,r,t,null)}function m(e,r){let t=Ht(e);return n(t.getGeometry(),$t(r),t.getSpatialReference())}export{m as crossesExecute};

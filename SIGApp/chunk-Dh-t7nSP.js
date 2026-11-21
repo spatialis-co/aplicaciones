@@ -1,0 +1,1 @@
+var a=class{constructor(t,s,e){this.objectId=t,this.target=s,this.distance=e}};var i=class extends a{constructor(t,s,e){super(t,s,e),this.type=`vertex`}};var d=class extends a{constructor(t,s,e,n,c,p=!1,h=null){super(t,s,e),this.start=n,this.end=c,this.draped=p,this.curve=h,this.type=`edge`}};export{i as n,d as t};

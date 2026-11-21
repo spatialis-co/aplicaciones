@@ -1,0 +1,1 @@
+import{r as F}from"./chunk-BnBQKHbO.js";import{Gd as S,KB as g,hV as js,sV as Ss}from"./main-P7UYSRER.js";var o=class extends F{constructor(a){super(a),this.type=`translate`,this.distance=S}clear(){this.distance=S}};g([Ss()],o.prototype,`type`,void 0),g([Ss()],o.prototype,`distance`,void 0),o=g([js(`esri.views.interactive.tooltip.infos.TranslateTooltipInfo`)],o);export{o as t};

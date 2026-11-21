@@ -1,0 +1,1 @@
+var r=Symbol(`isVoxelGraphicOrigin`);function n(i){return!!i&&r in i}export{r as n,n as t};

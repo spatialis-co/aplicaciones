@@ -1,0 +1,1 @@
+import{Mo as $t,No as Ht,Yo as $s}from"./main-P7UYSRER.js";var c=new $s;function u(e,t,r){return c.execute(e,t,r)}function i(e,t){let r=Ht(e);return u(r.getGeometry(),$t(t),r.getSpatialReference())}export{i as disjointExecute};

@@ -1,0 +1,1 @@
+var r=Symbol(`isImageryTileGraphicOrigin`);function e(i){return!!i&&r in i}export{r as n,e as t};

@@ -1,0 +1,1 @@
+import{KL as ea,Mo as $t,Vo as s$1,zo as yr}from"./main-P7UYSRER.js";function u(e,r={}){let{unit:o}=r,t=$t(e).calculateLength2D(),a=yr(e);return t&&o&&a&&(t=ea(t,a,o)),t}function s(e,r={}){return s$1(`json.lengthOperator`,`execute`,`lengthExecute`),u(e,r)}export{s as execute,u as lengthExecute};

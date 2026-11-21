@@ -1,0 +1,1 @@
+function o(t,...e){let n=e.length===0?`false`:e[0];return t?`true`:n}export{o as t};

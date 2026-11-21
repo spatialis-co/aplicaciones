@@ -1,0 +1,1 @@
+function f(i){let r={};for(let t in i){if(t===`declaredClass`)continue;let e=i[t];if(e!=null&&typeof e!=`function`)if(Array.isArray(e)){r[t]=[];for(let n=0;n<e.length;n++)r[t][n]=f(e[n])}else typeof e==`object`?e.toJSON&&(r[t]=JSON.stringify(e)):r[t]=e}return r}export{f as t};
